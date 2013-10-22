@@ -4,6 +4,7 @@ var htmlTag = hexo.util.html_tag,
     rootPath = hexo.config.root,
     emojiConfig = hexo.config.emojis || false,
     emojiImageDir = emojiConfig.image_dir || false;
+    defaultEmojiSize = 20;
 
 /**
  * Emoji commands for Hexo.
@@ -44,21 +45,27 @@ hexo.extend.console.register('emojis', 'Emojis everywhere', function(args){
  * Emoji tag renders a single emoji.
  *
  * Syntax:
- *   {% emoji [emojiNameWithoutColons] %}
+ *   {% emoji [emojiNameWithoutColons] [emojiSize] [class1,class2,class3] %}
  */
 hexo.extend.tag.register('emoji', function(args, content){
     var emojiName = args[0]; // emojiNameWithoutColons argument
+    var emojiSize = args[1] || defaultEmojiSize;
+    var classes = args[2] || "";
     var imgAttr = {};
 
     if (!emojiConfig || !emojiImageDir) {
         throw new Error('Emoji configuration was not found.');
     }
 
+    classes = classes.split(',');
+    classes.push('emoji');
+    classes.push('nofancybox');
+
     imgAttr.src = rootPath+emojiImageDir+'/'+emojiName+'.png';
-    imgAttr.width = 20;
-    imgAttr.height = 20;
+    imgAttr.width = emojiSize;
+    imgAttr.height = emojiSize;
+    imgAttr.class = classes.join(' ');
     imgAttr.title = emojiName;
-    imgAttr.class = "emoji nofancybox";
 
     return htmlTag('img', imgAttr);
 });
@@ -67,21 +74,27 @@ hexo.extend.tag.register('emoji', function(args, content){
  * Emoji block tag process a string block and replaces all emoji occurences.
  *
  * Syntax:
- *   {% emoji-block %}
+ *   {% emoji-block [emojiSize] [class1,class2,class3] %}
  *       Lorem ipsum dolor sit amet :emojiName:
  *       consectetur  adipisicing elit :anotherEmojiName:
  *   {% endemoji-block %}
  */
 hexo.extend.tag.register('emoji-block', function(args, content) {
+    var emojiSize = args[0] || defaultEmojiSize;
+    var classes = args[1] || "";
     var imgAttr = {};
 
     if (!emojiConfig || !emojiImageDir) {
         throw new Error('Emoji configuration was not found.');
     }
 
-    imgAttr.width = 20;
-    imgAttr.height = 20;
-    imgAttr.class = "emoji nofancybox";
+    classes = classes.split(',');
+    classes.push('emoji');
+    classes.push('nofancybox');
+
+    imgAttr.width = emojiSize;
+    imgAttr.height = emojiSize;
+    imgAttr.class = classes.join(' ');
 
     // find :something: pattern
     var emojifiedContent = content.replace(/:(.*?):/g, function(match) {

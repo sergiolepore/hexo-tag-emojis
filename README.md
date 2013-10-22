@@ -40,27 +40,35 @@ hexo emojis install
 #### Method 1 - Inline emoji
 
 ```
-{% emoji [emojiNameWithoutColons] %}
+{% emoji [emojiNameWithoutColons] [emojiSize] [class1,class2,class3] %}
 ```
 
 Example:
 
 ```
-{% emoji heart %}
+{% emoji heart 32 custom_class1,custom_class2 %}
 ```
 
 Will generate the following HTML:
 
 ```
-<img width="20" height="20" class="emoji nofancybox" title="heart" src="/images/emojis/heart.png">
+<img width="32" height="32" class="emoji nofancybox custom_class1 custom_class2" title="heart" src="/images/emojis/heart.png">
 ```
+
+__Heads up!__
+
+* `emojiSize` defaults to 20.
+* Classes must be comma-separated and without spaces between them.
+* `emoji` and `nofancybox` classes are added automatically.
+
+
 
 #### Method 2 - Emoji block
 
 This is the recommended choice if you want to process a whole paragraph.
 
 ```
-{% emoji-block %}
+{% emoji-block [emojiSize] [class1,class2,class3] %}
     Lorem ipsum dolor sit amet :emojiName:
     consectetur  adipisicing elit :anotherEmojiName:
 {% endemoji-block %}
