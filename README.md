@@ -19,7 +19,7 @@ plugins:
 
 ## Assets installation
 
-This plugin comes with all emoji images from [emoji-cheat-sheet.com repository](https://github.com/arvida/emoji-cheat-sheet.com). Before use them, you need to deploy the emoji images on your Hexo blog.
+This plugin comes with all emoji images from [emoji-cheat-sheet.com repository](https://github.com/arvida/emoji-cheat-sheet.com). Before using them, you need to deploy the emoji images on your Hexo blog.
 
 First, open your `_config.yml` file and paste the following lines:
 
