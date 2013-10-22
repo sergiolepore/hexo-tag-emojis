@@ -1,0 +1,37 @@
+{
+  "name": "hexo-tag-emojis",
+  "version": "1.0.0",
+  "description": "Use Emojis on your blog posts! :)",
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergiolepore/hexo-tag-emojis.git"
+  },
+  "keywords": [
+    "website",
+    "blog",
+    "hexo",
+    "image",
+    "embed",
+    "emojis",
+    "emoticons",
+    "smileys"
+  ],
+  "author": {
+    "name": "Sergio Lepore",
+    "email": "sergio.d.lepore@gmail.com",
+    "url": "http://www.sergiolepore.net/"
+  },
+  "license": "BSD-3",
+  "engines": {
+    "hexo": ">= 1.0.0"
+  },
+  "dependencies": {
+    "wrench": ">= 1.5.4",
+    "colors": "*"
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/sergiolepore/hexo-tag-emojis/issues"
+  }
+}
