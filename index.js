@@ -15,15 +15,15 @@ var htmlTag = hexo.util.html_tag,
  */
 hexo.extend.console.register('emojis', 'Emojis everywhere', function(args){
     // Ascii art, for the console geeks :)
-    console.log('\n _   _                  _____                _ _     '.yellow);
-    console.log('| | | |                |  ___|              (_|_)    '.yellow);
-    console.log('| |_| | _____  _____   | |__ _ __ ___   ___  _ _ ___ '.yellow);
-    console.log('|  _  |/ _ \\ \\/ / _ \\  |  __| \'_ ` _ \\ / _ \\| | / __|'.yellow);
-    console.log('| | | |  __/>  < (_) | | |__| | | | | | (_) | | \\__ \\'.yellow);
-    console.log('\\_| |_/\\___/_/\\_\\___/  \\____/_| |_| |_|\\___/| |_|___/'.yellow);
-    console.log('                                           _/ |      '.yellow);
-    console.log('                                          |__/       \n'.yellow);
-    console.log('                            Emojify the planet!'.yellow);
+    console.log('\n   _   _                  _____                _ _     '.yellow);
+    console.log('  | | | |                |  ___|              (_|_)    '.yellow);
+    console.log('  | |_| | _____  _____   | |__ _ __ ___   ___  _ _ ___ '.yellow);
+    console.log('  |  _  |/ _ \\ \\/ / _ \\  |  __| \'_ ` _ \\ / _ \\| | / __|'.yellow);
+    console.log('  | | | |  __/>  < (_) | | |__| | | | | | (_) | | \\__ \\'.yellow);
+    console.log('  \\_| |_/\\___/_/\\_\\___/  \\____/_| |_| |_|\\___/| |_|___/'.yellow);
+    console.log('                                             _/ |      '.yellow);
+    console.log('                                            |__/       \n'.yellow);
+    console.log('                              Emojify the planet!'.yellow);
     console.log('\n');
 
     var opt = args._[0] || null; // Option
@@ -57,6 +57,7 @@ hexo.extend.tag.register('emoji', function(args, content){
     imgAttr.src = rootPath+emojiImageDir+'/'+emojiName+'.png';
     imgAttr.width = 20;
     imgAttr.height = 20;
+    imgAttr.title = emojiName;
     imgAttr.class = "emoji nofancybox";
 
     return htmlTag('img', imgAttr);
@@ -85,6 +86,7 @@ hexo.extend.tag.register('emoji-block', function(args, content) {
     // find :something: pattern
     var emojifiedContent = content.replace(/:(.*?):/g, function(match) {
         match = match.replace(/:/g, ''); // :something: => something
+        imgAttr.title = match;
         imgAttr.src = rootPath+emojiImageDir+'/'+match+'.png';
 
         return htmlTag('img', imgAttr);
