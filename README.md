@@ -96,3 +96,6 @@ To remove all emoji images, run:
 ```
 hexo emojis remove
 ```
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sergiolepore/hexo-tag-emojis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
