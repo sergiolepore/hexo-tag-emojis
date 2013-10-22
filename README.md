@@ -2,6 +2,12 @@
 
 This is a [hexo](https://github.com/tommy351/hexo) tag plugin which allows you to insert [emojis](http://www.emoji-cheat-sheet.com/) on your blog posts.
 
+
+![](http://i5.minus.com/jg8SnLgAwUiSZ.png)
+
+![](http://i6.minus.com/jbrvBIzuuV2FSz.png)
+
+
 ## Plugin installation
 
 Run the following command in the root directory of hexo:
@@ -65,7 +71,7 @@ __Heads up!__
 
 #### Method 2 - Emoji block
 
-This is the recommended choice if you want to process a whole paragraph.
+This is the best choice if you want to process a whole paragraph.
 
 ```
 {% emoji-block [emojiSize] [class1,class2,class3] %}
