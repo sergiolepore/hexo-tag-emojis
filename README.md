@@ -41,6 +41,18 @@ Then run this command:
 hexo emojis install
 ```
 
+Another way, you can simply add cdn url like this:
+
+```
+# hexo-tag-emojis plugin configuration
+emojis:
+  cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
+```
+In this way, nothing will install into you blog, all images are from the CDN server,
+This is particularly useful for the blog hosted on github,
+because github is really slow for images
+
+
 ## Usage
 
 #### Method 1 - Inline emoji
