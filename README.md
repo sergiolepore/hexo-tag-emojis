@@ -23,7 +23,13 @@ plugins:
   - hexo-tag-emojis
 ```
 
-## Assets installation
+## Assets configuration
+
+__Heads up!__
+
+The following methods will define the way that emojis assets will be served to the client. You can only use one method at a time, choose wisely!
+
+#### Local installation
 
 This plugin comes with all emoji images from [emoji-cheat-sheet.com repository](https://github.com/arvida/emoji-cheat-sheet.com). Before using them, you need to deploy the emoji images on your Hexo blog.
 
@@ -41,16 +47,26 @@ Then run this command:
 hexo emojis install
 ```
 
-Another way, you can simply add cdn url like this:
+To uninstall:
+
+```
+hexo emojis remove
+```
+
+#### CDN (Content Delivery Network)
+
+You can avoid installing the assets on your blog and use a emoji CDN, like `http://cdn.staticfile.org/emojify.js/0.9.0/emojis`
+
+Open your `_config.yml` file and paste the following:
 
 ```
 # hexo-tag-emojis plugin configuration
 emojis:
   cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
 ```
-In this way, nothing will install into you blog, all images are from the CDN server,
-This is particularly useful for the blog hosted on github,
-because github is really slow for images
+
+This is particularly useful if your blog is hosted on Github, because sometimes it can be really slow with images.
+If you choose this method, you don't need to include the `image_dir` configuration.
 
 
 ## Usage
@@ -101,13 +117,6 @@ Example:
 {% endemoji-block %}
 ```
 
-## Remove assets
-
-To remove all emoji images, run:
-
-```
-hexo emojis remove
-```
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sergiolepore/hexo-tag-emojis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
