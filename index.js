@@ -3,9 +3,11 @@ var htmlTag = hexo.util.html_tag,
     emojiCommands = require('./emojiCommands')(hexo),
     rootPath = hexo.config.root,
     emojiConfig = hexo.config.emojis || false,
-    emojiImageDir = emojiConfig.image_dir || false;
+    emojiImageDir = emojiConfig.image_dir || false,
+    emojiCDN = emojiConfig.cdn || false,
+    emojiPrefix = emojiCDN ? emojiCDN : rootPath+emojiImageDir,
     defaultEmojiSize = 20;
-
+    
 /**
  * Emoji commands for Hexo.
  * Use `install` option to copy emoji assets on your Hexo blog.
@@ -53,7 +55,7 @@ hexo.extend.tag.register('emoji', function(args, content){
     var classes = args[2] || "";
     var imgAttr = {};
 
-    if (!emojiConfig || !emojiImageDir) {
+    if (!emojiConfig || !emojiPrefix) {
         throw new Error('Emoji configuration was not found.');
     }
 
@@ -61,7 +63,7 @@ hexo.extend.tag.register('emoji', function(args, content){
     classes.push('emoji');
     classes.push('nofancybox');
 
-    imgAttr.src = rootPath+emojiImageDir+'/'+emojiName+'.png';
+    imgAttr.src = emojiPrefix +'/'+emojiName+'.png';
     imgAttr.width = emojiSize;
     imgAttr.height = emojiSize;
     imgAttr.class = classes.join(' ');
@@ -84,7 +86,7 @@ hexo.extend.tag.register('emoji-block', function(args, content) {
     var classes = args[1] || "";
     var imgAttr = {};
 
-    if (!emojiConfig || !emojiImageDir) {
+    if (!emojiConfig || !emojiPrefix) {
         throw new Error('Emoji configuration was not found.');
     }
 
@@ -100,7 +102,7 @@ hexo.extend.tag.register('emoji-block', function(args, content) {
     var emojifiedContent = content.replace(/:(.*?):/g, function(match) {
         match = match.replace(/:/g, ''); // :something: => something
         imgAttr.title = match;
-        imgAttr.src = rootPath+emojiImageDir+'/'+match+'.png';
+        imgAttr.src = emojiPrefix +'/'+match+'.png';
 
         return htmlTag('img', imgAttr);
     });

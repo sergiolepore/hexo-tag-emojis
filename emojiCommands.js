@@ -6,10 +6,15 @@ var emojiCommands = module.exports = function(hexo) {
     emojiCommands.hexo = hexo;
     emojiCommands.emojiConfig = hexo.config.emojis || false;
     emojiCommands.emojiImageDir = emojiCommands.emojiConfig.image_dir || false;
+    emojiCommands.emojisCDN = emojiCommands.emojiConfig.cdn || false;
     emojiCommands.sourceDir = __dirname + '/source/images/emojis';
     emojiCommands.deployDir = hexo.base_dir + 'source/' + emojiCommands.emojiImageDir;
 
-    if (!emojiCommands.emojiConfig || !emojiCommands.emojiImageDir) {
+    if (!emojiCommands.emojiConfig ) {
+        throw new Error('Emoji configuration was not found.');
+    }
+    
+    if( !emojiCommands.emojiImageDir && !emojiCommands.emojisCDN){
         throw new Error('Emoji configuration was not found.');
     }
 
