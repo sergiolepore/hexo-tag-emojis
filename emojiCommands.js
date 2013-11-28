@@ -1,5 +1,6 @@
 var wrench = require('wrench'),
     colors = require('colors'),
+    packageInfo = require('./package.json'),
     fs = require('fs');
 
 var emojiCommands = module.exports = function(hexo) {
@@ -25,6 +26,11 @@ var emojiCommands = module.exports = function(hexo) {
  * Copies all emoji assets into `emojis.image_dir`.
  */
 emojiCommands.install = function() {
+    if (!emojiCommands.emojiImageDir) {
+        console.error('[ERROR] Hey! You forgot to add %s to your %s file!'.red, 'image_config'.inverse, '_config.yml'.inverse);
+        return;
+    }
+
     console.log('>> Copying emojis to '+emojiCommands.deployDir.inverse);
 
     if (!fs.existsSync(emojiCommands.deployDir)) {
@@ -44,6 +50,11 @@ emojiCommands.install = function() {
  * Removes all emoji assets from `emojis.image_dir`.
  */
 emojiCommands.remove = function() {
+    if (!emojiCommands.emojiImageDir) {
+        console.error('[ERROR] Hey! You forgot to add %s to your %s file!'.red, 'image_config'.inverse, '_config.yml'.inverse);
+        return;
+    }
+    
     console.log('>> Removing emojis from '+emojiCommands.deployDir.inverse);
 
     wrench.rmdirSyncRecursive(emojiCommands.deployDir, function() {
@@ -51,4 +62,20 @@ emojiCommands.remove = function() {
     });
 
     console.log('>> Done!\n');
+};
+
+/**
+ * Display useful information
+ */
+emojiCommands.showInfo = function() {
+  console.log('\\|°▿▿▿▿°|/ hey there!\n');
+  
+  console.log('Version'.bold+': '+packageInfo.version);
+  console.log('Author'.bold+':  '+packageInfo.author.name+' <'+packageInfo.author.email+'>');
+  console.log('Website'.bold+': '+packageInfo.author.url);
+  console.log('Help'.bold+':    hexo help emojis');
+  console.log('Github'.bold+':  '+packageInfo.repository.url);
+  console.log('Bugs'.bold+':    '+packageInfo.bugs.url);
+
+  console.log('\nThank you so much for using it!\n');
 };

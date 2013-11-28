@@ -1,5 +1,6 @@
 var htmlTag = hexo.util.html_tag,
     colors = require('colors'),
+    packageInfo = require('./package.json'),
     emojiCommands = require('./emojiCommands')(hexo),
     rootPath = hexo.config.root,
     emojiConfig = hexo.config.emojis || false,
@@ -7,6 +8,16 @@ var htmlTag = hexo.util.html_tag,
     emojiCDN = emojiConfig.cdn || false,
     emojiPrefix = emojiCDN ? emojiCDN : rootPath+emojiImageDir,
     defaultEmojiSize = 20;
+
+var emojiCOmmandOptions = {
+  desc: packageInfo.description,
+  usage: '<argument>',
+  arguments: [
+    {name: 'install', desc: 'Copies all emoji assets into your blog\'s public directory.'},
+    {name: 'remove', desc: 'Removes all emoji assets previously installed.'},
+    {name: 'info', desc: 'Displays useful info, like plugin version, author or GitHub links'}
+  ]
+};
     
 /**
  * Emoji commands for Hexo.
@@ -16,7 +27,7 @@ var htmlTag = hexo.util.html_tag,
  * Syntax:
  *   $ hexo emojis [install|remove]
  */
-hexo.extend.console.register('emojis', 'Emojis everywhere', function(args){
+hexo.extend.console.register('emojis', packageInfo.description, emojiCOmmandOptions, function(args, callback){
     // Ascii art, for the console geeks :)
     console.log('\n   _   _                  _____                _ _     '.yellow);
     console.log('  | | | |                |  ___|              (_|_)    '.yellow);
@@ -38,8 +49,11 @@ hexo.extend.console.register('emojis', 'Emojis everywhere', function(args){
         case 'remove':
             emojiCommands.remove(); // remove emojis
             break;
+        case 'info':
+            emojiCommands.showInfo();
+            break;
         default:
-            console.error(('[ERROR] Unknown argument '+opt.inverse+'.').red);
+            hexo.call('help', {_: ['emojis']}, callback);
     }
 });
 
