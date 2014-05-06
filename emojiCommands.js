@@ -25,7 +25,7 @@ var emojiCommands = module.exports = function(hexo) {
 /**
  * Copies all emoji assets into `emojis.image_dir`.
  */
-emojiCommands.install = function() {
+emojiCommands.install = function(callback) {
     if (!emojiCommands.emojiImageDir) {
         console.error('[ERROR] Hey! You forgot to add %s to your %s file!'.red, 'image_config'.inverse, '_config.yml'.inverse);
         return;
@@ -40,8 +40,10 @@ emojiCommands.install = function() {
     wrench.copyDirRecursive(emojiCommands.sourceDir, emojiCommands.deployDir, {forceDelete: true}, function(err) {
         if (err) {
             console.error(('[ERROR] '+err).red);
+            callback(err); // error
         } else {
             console.log('>> Done!\n');
+            callback(); // done with no errors
         }
     });
 };
@@ -49,7 +51,7 @@ emojiCommands.install = function() {
 /**
  * Removes all emoji assets from `emojis.image_dir`.
  */
-emojiCommands.remove = function() {
+emojiCommands.remove = function(callback) {
     if (!emojiCommands.emojiImageDir) {
         console.error('[ERROR] Hey! You forgot to add %s to your %s file!'.red, 'image_config'.inverse, '_config.yml'.inverse);
         return;
@@ -57,25 +59,31 @@ emojiCommands.remove = function() {
     
     console.log('>> Removing emojis from '+emojiCommands.deployDir.inverse);
 
-    wrench.rmdirSyncRecursive(emojiCommands.deployDir, function() {
-        console.warn('!! There was an error removing '+emojiCommands.deployDir.inverse+' directory. Please, remove it manually.');
+    wrench.rmdirRecursive(emojiCommands.deployDir, false, function (err) {
+        if (err) {
+            console.warn('!! There was an error removing '+emojiCommands.deployDir.inverse+' directory. Please, remove it manually.');
+            callback(err);
+        } else {
+            console.log('>> Done!\n');
+            callback();
+        }
     });
-
-    console.log('>> Done!\n');
 };
 
 /**
  * Display useful information
  */
-emojiCommands.showInfo = function() {
-  console.log('\\|°▿▿▿▿°|/ hey there!\n');
-  
-  console.log('Version'.bold+': '+packageInfo.version);
-  console.log('Author'.bold+':  '+packageInfo.author.name+' <'+packageInfo.author.email+'>');
-  console.log('Website'.bold+': '+packageInfo.author.url);
-  console.log('Help'.bold+':    hexo help emojis');
-  console.log('Github'.bold+':  '+packageInfo.repository.url);
-  console.log('Bugs'.bold+':    '+packageInfo.bugs.url);
+emojiCommands.showInfo = function(callback) {
+    console.log('\\|°▿▿▿▿°|/ hey there!\n');
 
-  console.log('\nThank you so much for using it!\n');
+    console.log('Version'.bold+': '+packageInfo.version);
+    console.log('Author'.bold+':  '+packageInfo.author.name+' <'+packageInfo.author.email+'>');
+    console.log('Website'.bold+': '+packageInfo.author.url);
+    console.log('Help'.bold+':    hexo help emojis');
+    console.log('Github'.bold+':  '+packageInfo.repository.url);
+    console.log('Bugs'.bold+':    '+packageInfo.bugs.url);
+
+    console.log('\nThank you so much for using it!\n');
+
+    callback();
 };

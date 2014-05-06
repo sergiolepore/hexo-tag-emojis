@@ -44,13 +44,13 @@ hexo.extend.console.register('emojis', packageInfo.description, emojiCOmmandOpti
 
     switch (opt) {
         case 'install':
-            emojiCommands.install(); // install emojis
+            emojiCommands.install(callback); // install emojis
             break;
         case 'remove':
-            emojiCommands.remove(); // remove emojis
+            emojiCommands.remove(callback); // remove emojis
             break;
         case 'info':
-            emojiCommands.showInfo();
+            emojiCommands.showInfo(callback);
             break;
         default:
             hexo.call('help', {_: ['emojis']}, callback);
@@ -113,7 +113,7 @@ hexo.extend.tag.register('emoji-block', function(args, content) {
     imgAttr.class = classes.join(' ');
 
     // find :something: pattern
-    var emojifiedContent = content.replace(/:(.*?):/g, function(match) {
+    var emojifiedContent = content.replace(/:([a-z0-9\+\-_]+):/, function(match) {
         match = match.replace(/:/g, ''); // :something: => something
         imgAttr.title = match;
         imgAttr.src = emojiPrefix +'/'+match+'.png';
