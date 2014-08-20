@@ -113,7 +113,7 @@ hexo.extend.tag.register('emoji-block', function(args, content) {
     imgAttr.class = classes.join(' ');
 
     // find :something: pattern
-    var emojifiedContent = content.replace(/:([a-z0-9\+\-_]+):/, function(match) {
+    var emojifiedContent = content.replace(/:([a-z0-9\+\-_]+):/g, function(match) {
         match = match.replace(/:/g, ''); // :something: => something
         imgAttr.title = match;
         imgAttr.src = emojiPrefix +'/'+match+'.png';
