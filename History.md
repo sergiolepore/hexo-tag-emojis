@@ -1,4 +1,9 @@
 
+1.1.2 / 2014-08-20
+==================
+
+  * Fixed error involving multiple emojis with the same name
+
 1.1.1 / 2014-05-05
 ==================
 
