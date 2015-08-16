@@ -1,4 +1,4 @@
-var htmlTag = hexo.util.html_tag,
+var htmlTag = require('hexo-util').htmlTag,
     colors = require('colors'),
     packageInfo = require('./package.json'),
     emojiCommands = require('./emojiCommands')(hexo),
