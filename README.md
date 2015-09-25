@@ -1,13 +1,11 @@
-# THIS PLUGIN IS NOT COMPATIBLE WITH HEXO V3 (FOR NOW)
-
 ## Introduction
 
-This is a [hexo](https://github.com/tommy351/hexo) tag plugin which allows you to insert [emojis](http://www.emoji-cheat-sheet.com/) on your blog posts.
+This is a [hexo](https://github.com/hexojs/hexo) tag plugin which allows you to insert [emojis](http://www.emoji-cheat-sheet.com/) on your blog posts.
 
 
-![](http://i5.minus.com/jg8SnLgAwUiSZ.png)
+![](http://i.imgur.com/vOqGsqb.png)
 
-![](http://i6.minus.com/jbrvBIzuuV2FSz.png)
+![](http://i.imgur.com/LFhn2RA.png)
 
 
 ## Plugin installation
@@ -57,17 +55,17 @@ hexo emojis remove
 
 #### CDN (Content Delivery Network)
 
-You can avoid installing the assets on your blog and use a emoji CDN, like `http://cdn.staticfile.org/emojify.js/0.9.0/emojis`
+You can avoid installing the assets on your blog and use a emoji CDN, like `http://cdn.staticfile.org/emojify.js/0.9.5/emojis`
 
 Open your `_config.yml` file and paste the following:
 
 ```
 # hexo-tag-emojis plugin configuration
 emojis:
-  cdn: http://cdn.staticfile.org/emojify.js/0.9.0/emojis
+  cdn: http://cdn.staticfile.org/emojify.js/0.9.5/emojis
 ```
 
-This is particularly useful if your blog is hosted on Github, because sometimes it can be really slow with images.
+This is particularly useful if you don't want Github to serve your resources.
 If you choose this method, you don't need to include the `image_dir` configuration.
 
 
@@ -118,7 +116,3 @@ Example:
     consectetur  adipisicing elit :boom:
 {% endemoji-block %}
 ```
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sergiolepore/hexo-tag-emojis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

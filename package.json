@@ -26,12 +26,7 @@
     "emoticons",
     "smileys"
   ],
-  "licenses": [
-    {
-      "type": "BSD 3-Clause License",
-      "url": "https://github.com/sergiolepore/hexo-tag-emojis/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sergiolepore/hexo-tag-emojis/issues"
   }
