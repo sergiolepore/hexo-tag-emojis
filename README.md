@@ -102,17 +102,17 @@ __Heads up!__
 This is the best choice if you want to process a whole paragraph.
 
 ```
-{% emoji-block [emojiSize] [class1,class2,class3] %}
+{% emoji_block [emojiSize] [class1,class2,class3] %}
     Lorem ipsum dolor sit amet :emojiName:
     consectetur  adipisicing elit :anotherEmojiName:
-{% endemoji-block %}
+{% endemoji_block %}
 ```
 
 Example:
 
 ```
-{% emoji-block %}
+{% emoji_block %}
     Lorem ipsum dolor sit amet :smiley:
     consectetur  adipisicing elit :boom:
-{% endemoji-block %}
+{% endemoji_block %}
 ```
