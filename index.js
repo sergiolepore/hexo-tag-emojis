@@ -90,12 +90,12 @@ hexo.extend.tag.register('emoji', function(args, content){
  * Emoji block tag process a string block and replaces all emoji occurences.
  *
  * Syntax:
- *   {% emoji-block [emojiSize] [class1,class2,class3] %}
+ *   {% emoji_block [emojiSize] [class1,class2,class3] %}
  *       Lorem ipsum dolor sit amet :emojiName:
  *       consectetur  adipisicing elit :anotherEmojiName:
- *   {% endemoji-block %}
+ *   {% endemoji_block %}
  */
-hexo.extend.tag.register('emoji-block', function(args, content) {
+hexo.extend.tag.register('emoji_block', function(args, content) {
     var emojiSize = args[0] || defaultEmojiSize;
     var classes = args[1] || "";
     var imgAttr = {};
