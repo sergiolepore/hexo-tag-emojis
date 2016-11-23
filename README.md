@@ -1,3 +1,5 @@
+# ! No longer maintained - Not compatible with Hexo v3+ !
+
 ## Introduction
 
 This is a [hexo](https://github.com/hexojs/hexo) tag plugin which allows you to insert [emojis](http://www.emoji-cheat-sheet.com/) on your blog posts.
